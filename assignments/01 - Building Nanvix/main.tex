@@ -3,6 +3,10 @@
 \usepackage[brazilian]{babel}
 
 \usepackage[parfill]{parskip}
+\usepackage{graphicx}
+\usepackage[cm]{fullpage}
+
+\usepackage{}
 
 \title{Compilando e Testando o Nanvix}
 
@@ -55,7 +59,9 @@ As ferramentas utilizadas no desenvolvimento do Nanvix, como no desenvolvimento 
 Para o desenvolvimento do Nanvix, você utilizará duas ferramentas: a \textit{toolchain} GCC-x86, uma coletânea de utilitários que inclui compilador, \textit{assembler} e \textit{linker}; e o Bochs, um emulador para plataforma x86 que possui um poderoso \textit{debugger} embutido. Para instalar as ferramentas de forma automática execute os seguintes comandos \textbf{a partir do diretório raiz do projeto}:
 
 \begin{verbatim}
-sudo bash tools/dev/setup -toolchain.shsudo bash tools/dev/setup -bochs.shsudo reboot now
+sudo bash tools/dev/setup -toolchain.sh
+sudo bash tools/dev/setup -bochs.sh
+sudo reboot now
 \end{verbatim}
 
 \section{Compilação e Execução}
@@ -64,10 +70,11 @@ sudo bash tools/dev/setup -toolchain.shsudo bash tools/dev/setup -bochs.shsudo
 Uma vez que as ferramentas de desenvolvimento necessárias para compilar o Nanvix foram devidamente instaladas, compilar o sistema torna-se uma tarefa simples. Do diretório raiz do projeto, invoque os seguintes comandos \textbf{a partir do diretório raiz do projeto}:
 
 \begin{verbatim}
-make nanvixsudo make image
+make nanvix
+sudo make image
 \end{verbatim}
 
-O primeiro comando realiza a compilação do Nanvix. Terminado esse processo, todos os binários devem ter sido criados com sucesso. O segundo comando gera uma imagem do sistem, criando-se assim o arquivo \texttt{nanvix.img} no diretório raiz. Esse arquivo é a imagem do sistema e será usado no processo de \textit{boot}, a seguir.
+O primeiro comando realiza a compilação do Nanvix. Terminado esse processo, todos os binários devem ter sido criados com sucesso. O segundo comando gera uma imagem do sistema, criando-se assim o arquivo \texttt{nanvix.img} no diretório raiz. Esse arquivo é a imagem do sistema e será usado no processo de \textit{boot}, a seguir.
 
 Finalmente, inicie o Nanvix no Bochs, dando \textit{boot} pela imagem de sistema gerada. Para fazer isso de forma automática, execute o seguinte comando \textbf{a partir do diretório raiz do projeto}:
 
@@ -75,6 +82,15 @@ Finalmente, inicie o Nanvix no Bochs, dando \textit{boot} pela imagem de sistema
 sudo bash tools/run/run.sh
 \end{verbatim}
 
-Pronto! Em caso de sucesso, você verá uma janela como mostrado na Figura~\ref{fig:bochs}. Para dar \textit{boot} do Nanvix clique em \textit{}
+\begin{figure}[b]
+	\centering
+	\begin{tabular}{cc}
+		\includegraphics[scale=0.2]{img/bochs.png} & 	\includegraphics[scale=0.22]{img/nanvix.png} \\
+	\end{tabular}
+	\caption{(a) Bochs Debugger. (b) Nanvix.}
+	\label{fig:bochs}
+\end{figure}
+
+Pronto! Em caso de sucesso, você verá uma janela como mostrado na Figura~\ref{fig:bochs}a. Para dar \textit{boot} do Nanvix clique em ``\textit{Continue [c]}''. Você verá uma nova janela com a tela do terminal do Nanvix (Figura~\ref{fig:bochs}b).
 
 \end{document}
